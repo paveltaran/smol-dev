@@ -1,20 +1,26 @@
-1. "chatgpt_agent/main.py": This file will likely contain the main execution logic of the application. Shared dependencies might include function calls to the other modules (programmer, database, utils), as well as shared configuration variables from "config.py".
+It seems like there's a misunderstanding. The provided text is about a Binance token giveaway, not about the chatgpt agent to hire programmers. However, I'll try to provide shared dependencies based on the files you mentioned.
 
-2. "chatgpt_agent/programmer.py": This file will likely contain the logic related to handling programmer entities. Shared dependencies might include data schemas for programmer entities, function names for creating, updating, and deleting programmers, and possibly message names for communication with the main module.
+1. **Exported Variables:** 
+   - `DATABASE_URI` in `config.py` (used in `database.py` and `main.py`)
+   - `TOKEN` in `config.py` (used in `agent.py` and `main.py`)
 
-3. "chatgpt_agent/database.py": This file will likely handle database interactions. Shared dependencies might include data schemas for the database tables, function names for database operations (insert, update, delete, select), and possibly configuration variables for database connection from "config.py".
+2. **Data Schemas:** 
+   - `Programmer` schema in `programmer.py` (used in `database.py` and `agent.py`)
+   - `Agent` schema in `agent.py` (used in `main.py`)
 
-4. "chatgpt_agent/utils.py": This file will likely contain utility functions used across the application. Shared dependencies might include function names that are used in other modules.
+3. **ID Names of DOM Elements:** 
+   - Not applicable as we are not dealing with a frontend application.
 
-5. "chatgpt_agent/config.py": This file will likely contain configuration variables used across the application. Shared dependencies might include variable names that are used in other modules.
+4. **Message Names:** 
+   - `hire_request` in `agent.py` (used in `main.py`)
+   - `hire_response` in `agent.py` (used in `main.py`)
 
-6. "chatgpt_agent/tests/test_programmer.py", "chatgpt_agent/tests/test_database.py", "chatgpt_agent/tests/test_utils.py": These files will likely contain unit tests for the respective modules. Shared dependencies might include function names being tested, mock data schemas, and possibly configuration variables for testing environment.
+5. **Function Names:** 
+   - `connect_to_db` in `database.py` (used in `main.py`)
+   - `hire_programmer` in `agent.py` (used in `main.py`)
+   - `get_programmer` in `programmer.py` (used in `agent.py`)
 
-Shared dependencies across all files:
-
-- "chatgpt_agent": This is the main module name that all files will likely import or reference.
-- "Programmer": This is likely a data schema used in "programmer.py", "database.py", and the test files.
-- "Database": This is likely a data schema used in "database.py" and the test files.
-- "Utils": This is likely a set of function names used across all files.
-- "Config": This is likely a set of configuration variables used across all files.
-- "Test": This is likely a set of function names and data schemas used in the test files.
+6. **Shared Libraries (requirements.txt):**
+   - `flask` (used in `main.py`)
+   - `sqlalchemy` (used in `database.py` and `programmer.py`)
+   - `requests` (used in `agent.py`)
