@@ -1,19 +1,24 @@
 ```python
-from flask import Flask, request
-from agent import Agent
-from database import connect_to_db
-from config import DATABASE_URI, TOKEN
+from agents.chatgpt import CHAT_AGENT
+from models.programmer import PROGRAMMER
+from services.hiring_service import HIRING_SERVICE
+from utils.database import DATABASE
+from config import settings
 
-app = Flask(__name__)
-agent = Agent(TOKEN)
-connect_to_db(DATABASE_URI)
+def init_chat_agent():
+    CHAT_AGENT.initialize()
 
-@app.route('/hire', methods=['POST'])
 def hire_programmer():
-    hire_request = request.get_json()
-    hire_response = agent.handle_request(hire_request)
-    return hire_response
+    programmer_requirements = CHAT_AGENT.get_programmer_requirements()
+    programmer = PROGRAMMER(programmer_requirements)
+    hiring_result = HIRING_SERVICE.hire_programmer(programmer)
+    if hiring_result:
+        DATABASE.save_programmer(programmer)
+        print(settings.PROGRAMMER_HIRE_SUCCESS)
+    else:
+        print(settings.PROGRAMMER_HIRE_FAILURE)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    init_chat_agent()
+    hire_programmer()
 ```
